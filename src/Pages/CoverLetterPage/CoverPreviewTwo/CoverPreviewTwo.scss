@@ -1,0 +1,135 @@
+/* Simple, print-first styles for sidebar layout */
+
+.cover-preview.cover-two {
+  /* Layout */
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 24px;
+
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #e6e6e6;
+
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: break-word;
+
+  /* Sidebar */
+  .cp-side {
+    border-right: 1px solid #e6e6e6;
+    padding-right: 16px;
+    text-align: left;
+
+    .cp-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #111111;
+      border: 1px solid #dcdcdc;
+      margin-bottom: 8px;
+    }
+
+    .cp-name {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .cp-title {
+      font-size: 14px;
+      color: #555555;
+      margin-top: 2px;
+    }
+
+    .cp-contact {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: #555555;
+
+      li { word-break: break-all; }
+    }
+  }
+
+  /* Main */
+  .cp-main {
+    .cp-job {
+      margin-bottom: 8px;
+
+      .cp-role {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111111;
+      }
+
+      .cp-company,
+      .cp-date {
+        font-size: 14px;
+        color: #555555;
+      }
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    .cp-greeting {
+      margin-top: 6px;
+    }
+
+    .cp-signoff {
+      margin-top: 16px;
+      .cp-name-strong {
+        font-weight: 700;
+        color: #111111;
+      }
+    }
+
+    .cp-applied {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #555555;
+
+      .cp-link {
+        color: #111111;
+        text-decoration: underline;
+        word-break: break-all;
+      }
+      .cp-jobid { color: #555555; }
+    }
+  }
+}
+
+/* Responsive: stack columns on small widths (and for narrow PDFs if needed) */
+@media (max-width: 900px) {
+  .cover-preview.cover-two {
+    grid-template-columns: 1fr;
+
+    .cp-side {
+      border-right: none;
+      border-bottom: 1px solid #e6e6e6;
+      padding-right: 0;
+      padding-bottom: 12px;
+    }
+  }
+}
+
+/* Print: remove borders if your exporter already frames the page */
+@media print {
+  .cover-preview.cover-two {
+    border: none;
+    background: #ffffff;
+    color: #000000;
+  }
+}

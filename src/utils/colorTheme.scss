@@ -1,0 +1,70 @@
+// ===============================
+// Black & Cool Grey Theme Variables
+// ===============================
+
+// Base Colors
+$color-black: #0b0d10;
+$color-white: #ffffff;
+
+// Grey Scale
+$grey-100: #f5f6f7;
+$grey-200: #e1e3e6;
+$grey-300: #c8ccd0;
+$grey-400: #a9afb6;
+$grey-500: #8b9199;
+$grey-600: #6e747c;
+$grey-700: #51565c;
+$grey-800: #35383c;
+$grey-900: #1a1c1f;
+
+// Accent (Cool tone)
+$accent-100: #d6e4f5;
+$accent-200: #adc9eb;
+$accent-300: #84aee1;
+$accent-400: #5b93d7;
+$accent-500: #3278cd;
+$accent-600: #1e5fae;
+
+// ===============================
+// Semantic Variables
+// ===============================
+
+// Backgrounds
+$bg-color: $color-black;
+$bg-surface: $grey-900;
+$bg-surface-alt: $grey-800;
+
+// Text
+$text-color: $grey-100;
+$text-muted: $grey-400;
+$text-inverse: $color-black;
+
+// Borders
+$border-color: $grey-700;
+$border-light: $grey-500;
+
+// Links
+$link-color: $accent-400;
+$link-hover: $accent-300;
+$link-active: $accent-500;
+
+// Buttons
+$btn-bg: $grey-700;
+$btn-text: $grey-100;
+$btn-hover-bg: $grey-600;
+$btn-active-bg: $grey-500;
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $grey-900, $grey-700);
+$gradient-accent: linear-gradient(135deg, $accent-500, $accent-300);
+
+// Shadows
+$shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3);
+$shadow-2: 0 4px 8px rgba(0, 0, 0, 0.4);
+$shadow-3: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+// States
+$success-color: #3ba776;
+$warning-color: #e0a63c;
+$danger-color: #d64545;
+$info-color: #4a90e2;

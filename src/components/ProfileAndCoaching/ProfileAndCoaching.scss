@@ -1,0 +1,127 @@
+.profileAndCoachingContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px 18px;
+  width: fit-content;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+
+  /* 1) Slightly larger Clerk UserButton */
+  .cl-userButtonRoot {
+    transform: scale(1.25);
+    transition: transform 0.25s ease;
+    will-change: transform;
+
+    &:hover { transform: scale(1.35); }
+  }
+
+  /* 2) Trigger button */
+  .selectTrigger {
+    background: #454444;
+    color: #faf7f7;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      background: #5b5a5a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+    &:active { transform: translateY(0); box-shadow: none; }
+
+    .chev {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  /* 3) Dropdown base (hidden by default) */
+  .dropdownMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 240px;
+    background: #2b2b2b;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    z-index: 20;
+
+    /* Hide from layout and interaction initially */
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    pointer-events: none;
+    visibility: hidden;
+
+    /* Animate with transitions only */
+    transition:
+      opacity 160ms ease,
+      transform 180ms ease,
+      visibility 0s linear 180ms; // delay visibility toggle until after close
+
+    li {
+      list-style: none;
+      color: #faf7f7;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      outline: none;
+
+      /* Stagger-ish feel with transition-delays */
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 140ms ease, transform 140ms ease;
+
+      &:hover { background: #545252; transform: translateX(4px); }
+      &:focus-visible { box-shadow: 0 0 0 2px #8b8a8a inset; background: #4a4949; }
+    }
+
+    /* Provide a little “stagger” using nth-child delays */
+    li:nth-child(1) { transition-delay: 30ms; }
+    li:nth-child(2) { transition-delay: 60ms; }
+    li:nth-child(3) { transition-delay: 90ms; }
+    li:nth-child(4) { transition-delay: 120ms; }
+  }
+
+  /* 4) Open state */
+  &.is-open {
+    .selectTrigger .chev { transform: rotate(180deg); }
+
+    .dropdownMenu {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      visibility: visible;
+      transition:
+        opacity 160ms ease,
+        transform 180ms ease,
+        visibility 0s;
+
+      li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .profileAndCoachingContainer .dropdownMenu,
+  .profileAndCoachingContainer .dropdownMenu li,
+  .profileAndCoachingContainer .selectTrigger,
+  .profileAndCoachingContainer .cl-userButtonRoot {
+    transition: none !important;
+  }
+}

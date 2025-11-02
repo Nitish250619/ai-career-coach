@@ -1,0 +1,156 @@
+/* --------- CLASSIC V2 (editorial, refined) --------- */
+.resume.classic-v2 {
+  --ink: #1a1f2a;
+  --muted: #6b7280;
+  --line: #eceef3;
+  --accent: #0f172a; /* very dark slate for headings */
+
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--ink);
+
+  .cl-header {
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 18px;
+
+    .cl-id {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cl-name {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0.2px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+    .cl-role {
+      font-weight: 700;
+      color: #334155;
+      font-size: 15px;
+      letter-spacing: .3px;
+    }
+
+    .cl-contact {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: var(--muted);
+      font-size: 13.5px;
+
+      .cl-dot {
+        margin: 0 6px;
+        color: #a1a7b3;
+      }
+    }
+  }
+
+  .cl-grid {
+    display: grid;
+    grid-template-columns: 1.6fr .9fr; /* wider content, tidy sidebar */
+    gap: 22px;
+  }
+
+  .cl-sec + .cl-sec { margin-top: 14px; }
+
+  .cl-h2 {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .55px;
+    color: #3b4251;
+    margin: 0 0 8px;
+  }
+  .cl-h3 {
+    font-size: 12.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .55px;
+    color: #485066;
+    margin: 0 0 8px;
+  }
+
+  .cl-text { line-height: 1.65; color: #111827; }
+
+  /* experience timeline rhythm */
+  .cl-timeline {
+    display: grid;
+    gap: 12px;
+  }
+
+  .cl-job {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+    background: #fff;
+  }
+
+  .cl-job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+
+    .cl-job-title { font-weight: 800; }
+    .cl-company { color: var(--muted); font-weight: 600; }
+    .cl-period { color: var(--muted); font-size: 13px; }
+  }
+
+  .cl-list {
+    margin: 6px 0 0 18px; padding: 0;
+    li {
+      list-style: disc;
+      margin: 4px 0; line-height: 1.45;
+    }
+  }
+
+  .cl-project {
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #fcfdff;
+  }
+
+  .cl-project-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px;
+    .cl-project-name { font-weight: 800; }
+    .cl-link { color: var(--muted); text-decoration: none; }
+    .cl-link:hover { text-decoration: underline; color: #334155; }
+  }
+
+  /* sidebar chips / bullets / education */
+  .cl-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; padding-left: 0; list-style: none;
+    li {
+      background: #f6f8ff;
+      border: 1px solid #e6ebff;
+      color: #0f172a;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12.5px; font-weight: 700;
+    }
+  }
+
+  .cl-bullets {
+    margin: 0; padding-left: 16px;
+    li { margin: 4px 0; line-height: 1.4; }
+  }
+
+  .cl-edu {
+    margin: 0; padding: 0; list-style: none; display: grid; gap: 10px;
+    .cl-edu-top { display: flex; justify-content: space-between; gap: 10px; }
+    .cl-edu-period { color: var(--muted); font-size: 13px; }
+    .cl-degree { color: #334155; }
+  }
+
+  @media (max-width: 900px) {
+    .cl-grid { grid-template-columns: 1fr; }
+  }
+}

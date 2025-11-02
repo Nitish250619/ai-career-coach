@@ -1,0 +1,279 @@
+/* ---- Theme tokens ---- */
+$bg: #0e0f10;         // near-black
+$panel: #151719;      // dark grey
+$muted: #a5abb1;      // soft grey
+$text: #e8eaed;       // light text
+$line: rgba(255,255,255,.10);
+$line-soft: rgba(255,255,255,.06);
+$gold: #d4af37;       // gold accent
+$gold-2: #b9972f;     // darker gold
+$danger: #ff6b6b;
+
+/* Focus ring helper */
+@mixin ring($color) {
+  outline: 0;
+  border-color: $color;
+  box-shadow: 0 0 0 3px rgba($color, .2);
+}
+
+.resume-create.dark-elegant {
+  min-height: calc(100vh - 80px);
+  background: $panel;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  padding: 24px 24px 32px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: $text;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: .3px;
+  }
+
+  /* ---- Tabs ---- */
+  .tabs {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px;
+    .tab-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid $line;
+      background: linear-gradient(180deg, #1a1c1f, #141619);
+      color: $text;
+      cursor: pointer; transition: .2s ease;
+      &:hover { border-color: $gold; box-shadow: 0 0 0 3px rgba(212,175,55,.15); }
+      &.active { background: $gold; color: #111; border-color: $gold; font-weight: 700; }
+    }
+  }
+
+  .tab-body { margin-top: 8px; }
+
+  /* ---- Reusable form primitives ---- */
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .label { font-weight: 700; font-size: 13px; color: $text; letter-spacing: .3px; }
+
+  .input, .textarea {
+    border: 1px solid $line;
+    border-radius: 12px;
+    background: #0f1113;
+    color: $text;
+    padding: 12px 14px;
+    font-weight: 500;
+    transition: border .15s ease, box-shadow .15s ease, background .15s ease;
+    &::placeholder { color: $muted; }
+    &:hover { border-color: rgba(255,255,255,.18); }
+    &:focus { @include ring($gold); }
+  }
+  .textarea { resize: vertical; min-height: 88px; }
+
+  /* ---- Buttons ---- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 14px; border-radius: 12px; cursor: pointer;
+    background: linear-gradient(180deg, #1a1c1f, #141619);
+    color: $text; border: 1px solid $line;
+    transition: .2s ease;
+    &:hover { border-color: $gold; color: $gold; }
+  }
+  .btn-outline {
+    background: transparent; border-color: $gold; color: $gold; font-weight: 700;
+    &:hover { background: rgba(212,175,55,.08); }
+  }
+  .btn-ghost { background: transparent; border-style: dashed; color: $muted; }
+  .btn-danger { &:hover { border-color: $danger; color: $danger; } }
+  .btn-ai {
+    background: linear-gradient(180deg, $gold, $gold-2);
+    border-color: transparent; color: #111; font-weight: 800;
+    &:disabled { opacity: .65; cursor: not-allowed; }
+  }
+
+  /* ---- Layout & Groups ---- */
+  .info-form { display: flex; flex-direction: column; gap: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .col-span-2 { grid-column: span 2; }
+
+  .fieldset {
+    border: 1px solid $line;
+    border-radius: 16px; padding: 16px; background: #101214; margin-top: 4px;
+    legend { padding: 0 6px; font-weight: 800; color: $gold; letter-spacing: .4px; }
+  }
+
+  .card {
+    border: 1px solid $line-soft; border-radius: 14px; background: #0f1113;
+    padding: 14px; margin-bottom: 12px;
+  }
+
+  .row { display: flex; gap: 12px; align-items: stretch;
+    &.two > * { flex: 1; }
+    &.end { justify-content: flex-end; }
+  }
+
+  .bullet-row { align-items: center; gap: 8px;
+    .textarea, .input { flex: 1; }
+    .btn { height: 40px; padding-inline: 12px; }
+  }
+
+  /* ---- Chips (Skills preview) ---- */
+  .chips {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding-left: 0; list-style: none;
+    li {
+      background: #121417; border: 1px solid $line; color: $text;
+      padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    }
+  }
+
+  /* ---- Preview toolbar ---- */
+  .preview-header {
+    position: sticky; top: 8px; z-index: 2;
+    display: flex; justify-content: flex-end; margin-bottom: 12px;
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  }
+}
+
+/* ---- Keep preview contained (A4-ish) ---- */
+.resume {
+  width: 794px;            /* ≈ A4 width @ 96dpi */
+  min-height: 1123px;      /* ≈ A4 height @ 96dpi */
+  margin: 0 auto 24px;
+  background: #fff; color: #222;
+  border: 1px solid #eee; border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.2);
+  padding: 28px;
+}
+
+/* ---- Tighter, cooler spacing & visuals for Experience bullets ---- */
+.resume-create.dark-elegant {
+  .bullets {
+    margin-top: 12px;
+    background: #0c0e10;
+    border: 1px dashed $line;
+    border-radius: 14px;
+    padding: 12px;
+    counter-reset: bullet;
+
+    .bullets-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $line-soft;
+
+      span {
+        font-weight: 800;
+        letter-spacing: .4px;
+        color: $muted;
+      }
+
+      .btn.btn-outline {
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+    }
+
+    .bullet-row {
+      position: relative;
+      gap: 10px;
+      padding-left: 40px;
+
+      & + .bullet-row {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed $line-soft;
+      }
+
+      &::before {
+        counter-increment: bullet;
+        content: counter(bullet) ".";
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        font-weight: 900;
+        color: $gold;
+        opacity: .95;
+      }
+
+      .textarea, .input { min-height: 44px; padding: 10px 12px; }
+      .btn.btn-ghost.btn-danger { min-width: 40px; height: 40px; border-radius: 10px; }
+
+      &:hover { background: rgba(255,255,255,.02); border-radius: 10px; }
+    }
+  }
+
+  /* Space the "+ Add" and AI sections cleanly in Experience & Projects */
+  .fieldset {
+    > .btn.btn-outline {         /* "+ Add company" / "+ Add project" etc. */
+      margin-top: 8px;
+      margin-bottom: 16px;       /* space before AI section */
+    }
+    .ai-improve-wrap {           /* "Improve ... using AI" */
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid $line-soft;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  /* extra spacing polish on cards */
+  .card {
+    .row.two { margin-bottom: 8px; }
+    .field + .field { margin-top: 8px; }
+    .row.end { margin-top: 10px; }
+  }
+}
+
+/* ---- Responsive tweaks ---- */
+@media (max-width: 900px) {
+  .resume-create.dark-elegant {
+    .grid { grid-template-columns: 1fr; }
+    .col-span-2 { grid-column: auto; }
+    .preview-header { position: static; }
+  }
+}
+
+@media print {
+  .resume-create { box-shadow: none; background: #fff; }
+  .tabs, .preview-header { display: none !important; }
+  .resume { border: none; box-shadow: none; width: auto; min-height: auto; padding: 0; }
+}
+
+
+/* Tone bar */
+.resume-create.dark-elegant .tone-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  .tone-group {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .tone-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid $line;
+    background: linear-gradient(180deg, #1a1c1f, #141619);
+    color: $text;
+    cursor: pointer;
+    transition: .2s ease;
+    &:hover { border-color: $gold; color: $gold; }
+    &.active { background: $gold; border-color: $gold; color: #111; font-weight: 800; }
+  }
+}
+
+/* Drag handle row above each card */
+.resume-create.dark-elegant .drag-row {
+  display: flex; justify-content: flex-start; margin: 2px 0 6px;
+}
+.resume-create.dark-elegant .drag-handle {
+  border: 1px dashed $line;
+  background: transparent;
+  color: $muted;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: grab;
+  &:active { cursor: grabbing; }
+  &:hover { color: $gold; border-color: $gold; }
+}

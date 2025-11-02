@@ -1,0 +1,162 @@
+.controls {
+  /* Palette */
+  --black-900: #0d0f12;
+  --black-800: #121417;
+  --grey-700: #1f242b;
+  --grey-600: #2a3038;
+  --grey-500: #3a414b;
+  --grey-400: #4a5260;
+  --grey-300: #6b7280;
+  --text: #e7eaf0;
+  --muted: #b7bdc6;
+  --gold: #f5c542;
+  --gold-600: #e0b231;
+
+  /* Container */
+  background: linear-gradient(180deg, var(--black-900), var(--black-800));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--text);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+
+  .row { display: flex; align-items: center; gap: 12px; }
+  .stretch { flex: 1; }
+  .grow { flex: 1; }
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: .2px;
+  }
+
+  /* Mode toggle */
+  .mode-toggle {
+    display: inline-flex;
+    padding: 4px;
+    gap: 6px;
+    border-radius: 999px;
+    background: var(--grey-700);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .tab {
+    appearance: none;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease;
+
+    &:hover {
+      color: var(--text);
+      background: var(--grey-600);
+    }
+
+    &.active {
+      color: #0a0a0a;
+      background: linear-gradient(180deg, #f9d86b, var(--gold));
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.25) inset,
+        0 6px 16px rgba(245, 197, 66, 0.25);
+    }
+  }
+
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 12px;
+    margin-top: 12px;
+
+    @media (max-width: 880px) { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 520px) { grid-template-columns: 1fr; }
+  }
+
+  /* Fields */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    span {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .2px;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--grey-500);
+      background: linear-gradient(180deg, var(--grey-700), var(--grey-600));
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+
+      &:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.24);
+        transform: translateY(-1px);
+      }
+
+      &::placeholder { color: var(--grey-300); }
+    }
+
+    /* Number input clean-up */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; }
+  }
+
+  /* Generate button */
+  .generate {
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    font-weight: 800;
+    letter-spacing: .3px;
+    cursor: pointer;
+    color: #0a0a0a;
+    background: linear-gradient(180deg, #fbe18a, var(--gold));
+    box-shadow:
+      0 10px 22px rgba(245, 197, 66, 0.22),
+      inset 0 1px 0 rgba(255,255,255,0.45);
+    transition: transform .15s ease, filter .2s ease, box-shadow .2s ease, opacity .2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      box-shadow:
+        0 12px 26px rgba(245, 197, 66, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    &:active { transform: translateY(1px); }
+
+    &:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+      background: linear-gradient(180deg, #dcc067, #c9a844);
+      box-shadow: none;
+    }
+  }
+}
+
+/* Soft entrance */
+@keyframes controlsPop {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.controls { animation: controlsPop .24s ease-out both; }

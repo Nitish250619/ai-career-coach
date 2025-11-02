@@ -1,0 +1,113 @@
+/* Theme knobs */
+$bg: #0e0e0e;
+$panel: #151515;
+$panel2: #1a1a1a;
+$text: #f5f5f5;
+$muted: #bdbdbd;
+$gold: #d4af37;
+
+/* Section wrapper */
+.tmn {
+  min-height: calc(100vh - 80px);
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 6%;
+  background:
+    radial-gradient(1200px 500px at 0% -10%, rgba($gold, 0.08), transparent 60%),
+    linear-gradient(180deg, $bg 0%, #0b0b0b 100%);
+  color: $text;
+
+  &__header { text-align: center; max-width: 900px; margin: 0 auto 2.2rem; }
+  &__title {
+    font-size: clamp(1.8rem, 2.4vw, 2.6rem);
+    margin: 0 0 0.6rem;
+    background: linear-gradient(90deg, #ffd700, #f5f5f5, $gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.4px;
+  }
+  &__subtitle { color: $muted; font-size: 1.04rem; }
+}
+
+/* Viewport strip (mask edges; pause is handled by Swiper autoplay pauseOnMouseEnter) */
+.tmn__viewport {
+  position: relative;
+  margin: 1.2rem auto;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Swiper root in row */
+.tmn__swiper {
+  width: 100%;
+  /* Let Swiper animate; our cards are 'auto' width slides */
+}
+
+/* Each slide uses auto width via CSS; keep responsive */
+.tmn__slide {
+  width: 380px;  /* desktop default */
+  max-width: 88vw;
+}
+
+@media (max-width: 640px) {
+  .tmn__slide { width: 320px; }
+}
+
+/* Card styles (same vibe as before, lighter shadows for perf) */
+.tmn__card {
+  background: linear-gradient(180deg, $panel 0%, $panel2 100%);
+  border-radius: 18px;
+  padding: 1.2rem 1.1rem 1.1rem;
+  color: $text;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 10px 24px rgba(0,0,0,0.30);
+  outline: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, outline-color 0.25s ease;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.07),
+      0 16px 34px rgba($gold, 0.22);
+    outline-color: rgba($gold, 0.32);
+  }
+}
+
+.tmn__cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.tmn__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #222;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  outline: 2px solid rgba($gold, 0.35);
+}
+
+.tmn__meta { display: grid; gap: 2px; }
+.tmn__name { font-weight: 700; letter-spacing: 0.2px; }
+.tmn__role { color: $muted; font-size: 0.95rem; }
+.tmn__stars { color: #ffdd55; font-size: 0.9rem; letter-spacing: 2px; }
+
+.tmn__text {
+  margin-top: 0.3rem;
+  color: #dcdcdc;
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+/* Reduced motion: stops Swiper autoplay—optional */
+@media (prefers-reduced-motion: reduce) {
+  .tmn__swiper {
+    .swiper-wrapper { transform: none !important; }
+  }
+}

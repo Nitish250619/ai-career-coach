@@ -1,0 +1,166 @@
+.features {
+  padding: 6rem 10%;
+  background: radial-gradient(circle at top left, #1b1b1b, #0e0e0e);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &__title {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #ffd700, #f5f5f5, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    letter-spacing: 0.5px;
+  }
+
+  &__intro {
+    max-width: 750px;
+    margin: 0 auto 4rem auto;
+    color: #c7c7c7;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  &__bottom {
+    margin-top: 5rem;
+    max-width: 750px;
+    margin-inline: auto;
+    color: #cfcfcf;
+
+    h3 {
+      color: #f8f8f8;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 1rem;
+      color: #b0b0b0;
+    }
+  }
+
+  /* floating glow dots */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+    opacity: 0.15;
+    filter: blur(60px);
+    animation: float 10s ease-in-out infinite alternate;
+  }
+  &::before {
+    width: 180px;
+    height: 180px;
+    top: 5%;
+    left: 10%;
+  }
+  &::after {
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 4s;
+  }
+}
+
+.feature-card {
+  position: relative;
+  background: linear-gradient(145deg, #2b2b2b, #1b1b1b);
+  border-radius: 18px;
+  padding: 2.2rem 1.8rem;
+  flex: 1 1 280px;
+  max-width: 320px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+  }
+
+  &__glow {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: linear-gradient(120deg, rgba(255, 215, 0, 0.2), rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  &:hover .feature-card__glow {
+    opacity: 1;
+  }
+
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #f5f5f5;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    color: #bdbdbd;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .features {
+    padding: 4rem 6%;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__intro {
+      font-size: 1rem;
+    }
+
+    &__bottom h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .feature-card {
+    max-width: 100%;
+  }
+}
+
+/* Floating animation for glow dots */
+@keyframes float {
+  from {
+    transform: translateY(0px) translateX(0px);
+  }
+  to {
+    transform: translateY(-30px) translateX(20px);
+  }
+}

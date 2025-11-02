@@ -1,0 +1,209 @@
+.how-it-works {
+  min-height: calc(100vh - 80px);
+  padding: 6rem 10%;
+  background: radial-gradient(circle at 20% -10%, #1b1b1b, #0e0e0e 60%);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &__title {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #ffd700, #f5f5f5, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 18px rgba(255, 215, 0, 0.15);
+  }
+
+  &__intro {
+    max-width: 780px;
+    margin: 0 auto 3.5rem;
+    color: #c7c7c7;
+    font-size: 1.06rem;
+    line-height: 1.8;
+  }
+
+  /* Timeline grid (desktop), stacked (mobile) */
+  &__steps {
+    counter-reset: step;
+    list-style: none;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    /* connector line behind cards on desktop */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 64px; /* aligns near badges/icons */
+      left: 5%;
+      right: 5%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.5), rgba(245, 245, 245, 0.2));
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
+      pointer-events: none;
+    }
+  }
+
+  &__cta {
+    margin-top: 3.5rem;
+    color: #bdbdbd;
+    font-size: 1.05rem;
+  }
+}
+
+/* Card */
+.step-card {
+  position: relative;
+  background: linear-gradient(145deg, #252525, #171717);
+  border-radius: 18px;
+  padding: 2.2rem 1.6rem 2rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  overflow: hidden;
+  isolation: isolate; /* ensures glow stays beneath content */
+
+  /* subtle border via outline gradient */
+  outline: 1px solid rgba(255, 255, 255, 0.06);
+
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 26px rgba(212, 175, 55, 0.35);
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  }
+
+  /* soft inner glow */
+  &__halo {
+    position: absolute;
+    inset: -30% -10% 40% -10%;
+    background: radial-gradient(50% 50% at 50% 40%, rgba(212, 175, 55, 0.25), transparent 70%);
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(30px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 0;
+  }
+  &:hover &__halo {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* numbered badge */
+  &__badge {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #d4af37, #f5f5f5);
+    color: #111;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 22px rgba(212, 175, 55, 0.45);
+    transform: rotate(-8deg);
+    z-index: 2;
+
+    span {
+      display: inline-block;
+      font-size: 1.1rem;
+      transform: rotate(8deg);
+    }
+  }
+
+  &__icon {
+    font-size: 2.4rem;
+    margin: 1.2rem 0 0.6rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0.6rem 0 0.6rem;
+    color: #f5f5f5;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    color: #bdbdbd;
+    line-height: 1.65;
+    z-index: 1;
+    position: relative;
+  }
+}
+
+/* Stagger-like reveal with pure CSS */
+.step-card {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardIn 500ms ease forwards;
+}
+.step-card:nth-child(1) { animation-delay: 60ms; }
+.step-card:nth-child(2) { animation-delay: 120ms; }
+.step-card:nth-child(3) { animation-delay: 180ms; }
+.step-card:nth-child(4) { animation-delay: 240ms; }
+
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .how-it-works__steps {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+
+    &::before {
+      /* break connector into two segments for two rows */
+      display: none; /* simpler: hide line on mid view */
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .how-it-works {
+    padding: 4.5rem 6%;
+    &__title { font-size: 2rem; }
+    &__intro { font-size: 1rem; margin-bottom: 2.6rem; }
+  }
+
+  .how-it-works__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    max-width: 100%;
+    padding: 1.8rem 1.2rem 1.6rem;
+
+    &__badge {
+      top: -10px;
+      left: -10px;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+
+      span { font-size: 1rem; }
+    }
+
+    &__icon { font-size: 2.2rem; }
+    &__title { font-size: 1.15rem; }
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .step-card {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,94 @@
+/* Simple, print-first styles for classic block letter */
+
+.cover-preview.cover-one {
+  /* Layout */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+
+  /* Neutral palette for clean PDFs */
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #e6e6e6;
+
+  /* Typography */
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: break-word;
+
+  /* Header */
+  .cp-header {
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e6e6e6;
+
+    .name {
+      margin: 0 0 4px 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      color: #555555;
+
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  /* Body */
+  .cp-body {
+    .cp-date {
+      font-size: 14px;
+      color: #555555;
+      margin-bottom: 8px;
+    }
+
+    .cp-recipient {
+      margin-bottom: 8px;
+      color: #111111;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+  }
+
+  /* Signoff */
+  .cp-signoff {
+    margin-top: 16px;
+
+    .cp-name {
+      font-weight: 600;
+      color: #111111;
+    }
+  }
+
+  /* Footer note (job link / id) */
+  .cp-footer-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #555555;
+
+    .cp-link {
+      color: #111111;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+  }
+}
+
+/* Print: strip borders/backgrounds that aren’t needed by PDF exporters */
+@media print {
+  .cover-preview.cover-one {
+    border: none;
+    background: #ffffff;
+    color: #000000;
+  }
+}
