@@ -26,25 +26,25 @@ const App = () => {
         <Route
           path="/resume-builder"
           element={
-            <SignedIn>
+            
               <ResumeCreatePage/>
-            </SignedIn>
+            
           }
         />
          <Route
           path="/cover-letter"
           element={
-            <SignedIn>
+            
               <CoverLetterPage/>
-            </SignedIn>
+            
           }
         />
          <Route
           path="/preparation"
           element={
-            <SignedIn>
+            
               <PreparePage/>
-            </SignedIn>
+            
           }
         />
         {/* <Route
