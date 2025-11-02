@@ -41,7 +41,7 @@ const MyNavBar = () => {
           <div className="auth-buttons">
             {/* These could also be Links if they go to specific pages */}
             
-            <SignedOut>
+            {/* <SignedOut>
               <button
               
               className="login-btn"
@@ -61,10 +61,11 @@ const MyNavBar = () => {
             >
               Sign Up
             </button>
-            </SignedOut>
-            <SignedIn>
-              <ProfileAndCoaching/>
-            </SignedIn>
+            </SignedOut> */}
+            <ProfileAndCoaching/>
+            {/* <SignedIn>
+              
+            </SignedIn> */}
           </div>
         </div>
 
